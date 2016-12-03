@@ -2,9 +2,9 @@ from random import choice
 from scapy.all import *
 
 
-def is_port_open(ip, port):
+def is_port_open(ip_addr, port):
     ip = IP()
-    ip.dst = ip
+    ip.dst = ip_addr
 
     syn = TCP()
     syn.sport = choice(range(1000, 9999))
