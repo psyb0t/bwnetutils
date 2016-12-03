@@ -7,7 +7,7 @@ def is_port_open(ip, port):
     ip.dst = ip
 
     syn = TCP()
-    syn.sport = choice(range(1000-9999))
+    syn.sport = choice(range(1000, 9999))
     syn.dport = port
     syn.flags = 'S'
     syn.seq = 1
