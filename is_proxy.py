@@ -3,7 +3,13 @@ import socket
 
 def is_proxy(ip, port):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect((ip, port))
+
+    try:
+        client.connect((ip, port))
+    except:
+        client.close()
+        return False
+
     client.send('''GET http://bot.whatismyipaddress.com/ HTTP/1.1
 Server: bot.whatismyipaddress.com:80
 Host: bot.whatismyipaddress.com
