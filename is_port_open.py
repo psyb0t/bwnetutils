@@ -2,7 +2,7 @@ from random import choice
 from scapy.all import *
 
 
-def is_port_open(ip_addr, port):
+def is_port_open(ip_addr, port, timeout=5, verbose=False):
     ip = IP()
     ip.dst = ip_addr
 
@@ -14,9 +14,9 @@ def is_port_open(ip_addr, port):
 
     packet = ip/syn
 
-    synack = sr1(packet)
+    synack = sr1(packet, timeout=timeout, verbose=verbose)
 
-    if synack.sprintf('%TCP.flags%') == 'SA':
+    if synack and synack.sprintf('%TCP.flags%') == 'SA':
         return True
 
     return False
