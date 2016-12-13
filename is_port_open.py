@@ -1,5 +1,5 @@
 from random import choice
-from scapy.all import *
+from scapy.all import IP, TCP, sr1
 
 
 def is_port_open(ip_addr, port, timeout=5, verbose=False):
@@ -7,7 +7,7 @@ def is_port_open(ip_addr, port, timeout=5, verbose=False):
     ip.dst = ip_addr
 
     syn = TCP()
-    syn.sport = choice(range(1000, 9999))
+    syn.sport = choice(range(1000, 50000))
     syn.dport = port
     syn.flags = 'S'
     syn.seq = 1
